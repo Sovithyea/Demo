@@ -11,27 +11,37 @@
 
 {{-- {{$colors}} --}}
 
-<a href="{{route('colors.create')}}">Create</a>
+@if(Session::has('message'))
+    <div style="color: green; font-size: 1.5rem">
+    {{ Session::get('message')}}
+    </div>
+@endif
+
+<a href="{{route('suppliers.create')}}">Create</a>
 
 <table class="table" border="1" style="width: 75%">
     <thead>
         <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Create at</th>
+            <th>Company</th>
+            <th>Owner</th>
+            <th>Telephone</th>
+            <th>Address</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody style="text-align: center">
-        @foreach ($colors as $c)
+        @foreach ($suppliers as $s)
             <tr>
-                <td>{{$c->id}}</td>
-                <td>{{$c->name}}</td>
-                <td>{{$c->created_at ? $c->created_at : 'N/A'}}</td>
+                <td>{{$s->id}}</td>
+                <td>{{$s->company}}</td>
+                <td>{{$s->owner_name}}</td>
+                <td>{{$s->telephone}}</td>
+                <td>{{$s->address ? $s->address : 'N/A'}}</td>
                 <td>
                     <div style="display: flex; gap: 1rem">
-                        <a href="{{route('colors.edit', ['color' => $c->id])}}">Edit</a>
-                        <form action="{{route('colors.destroy', ['color' => $c->id])}}" method="post">
+                        <a href="{{route('suppliers.edit', ['supplier' => $s->id])}}">Edit</a>
+                        <form action="{{route('suppliers.destroy', ['supplier' => $s->id])}}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Delete</button>
@@ -42,8 +52,5 @@
         @endforeach
     </tbody>
 </table>
-<div class="d-flex justify-content-center">
-    {!! $colors->links() !!}
-</div>
 </body>
 </html>

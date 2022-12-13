@@ -11,7 +11,7 @@
 
 {{-- {{$colors}} --}}
 
-<a href="{{route('colors.create')}}">Create</a>
+<a href="{{route('product-types.index')}}">Back</a>
 
 <table class="table" border="1" style="width: 75%">
     <thead>
@@ -23,27 +23,28 @@
         </tr>
     </thead>
     <tbody style="text-align: center">
-        @foreach ($colors as $c)
+        @foreach ($product_types as $p)
             <tr>
-                <td>{{$c->id}}</td>
-                <td>{{$c->name}}</td>
-                <td>{{$c->created_at ? $c->created_at : 'N/A'}}</td>
+                <td>{{$p->id}}</td>
+                <td>{{$p->name}}</td>
+                <td>{{$p->created_at ? $p->created_at : 'N/A'}}</td>
                 <td>
                     <div style="display: flex; gap: 1rem">
-                        <a href="{{route('colors.edit', ['color' => $c->id])}}">Edit</a>
-                        <form action="{{route('colors.destroy', ['color' => $c->id])}}" method="post">
+                        <a href="{{route('product-types.recovery', ['product_type' => $p->id])}}">Recovery</a>
+                        <a href="{{route('product-types.force-delete', ['product_type' => $p->id])}}">Force Delete</a>
+                        {{-- <form action="{{route('product-types.destroy', ['product_type' => $p->id])}}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Delete</button>
-                        </form>
+                        </form> --}}
                     </div>
                 </td>
             </tr>រ
         @endforeach
     </tbody>
 </table>
-<div class="d-flex justify-content-center">
-    {!! $colors->links() !!}
-</div>
+{{-- <div class="d-flex justify-content-center">
+    {!! $product_types->links() !!}
+</div> --}}
 </body>
 </html>
