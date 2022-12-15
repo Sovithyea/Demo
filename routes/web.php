@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\ModellController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +29,8 @@ Route::get('/', function () {
 Route::resource('colors', ColorController::class);
 Route::resource('product-types', ProductTypeController::class);
 Route::resource('suppliers', SupplierController::class);
+Route::resource('brands', BrandController::class);
+Route::resource('modells', ModellController::class);
 
 //soft_delete
 Route::get('product-types-trash', [ProductTypeController::class, 'trash'])->name('product-types.trash');
