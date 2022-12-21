@@ -1,49 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-<body>
+@extends('layouts.master')
 
-{{-- {{$colors}} --}}
-
-<a href="{{route('colors.create')}}">Create</a>
-
-<table class="table" border="1" style="width: 75%">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Create at</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody style="text-align: center">
-        @foreach ($colors as $c)
-            <tr>
-                <td>{{$c->id}}</td>
-                <td>{{$c->name}}</td>
-                <td>{{$c->created_at ? $c->created_at : 'N/A'}}</td>
-                <td>
-                    <div style="display: flex; gap: 1rem">
-                        <a href="{{route('colors.edit', ['color' => $c->id])}}">Edit</a>
-                        <form action="{{route('colors.destroy', ['color' => $c->id])}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Delete</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>រ
-        @endforeach
-    </tbody>
-</table>
-<div class="d-flex justify-content-center">
-    {!! $colors->links() !!}
+@section('content')
+<div class="row page-titles mx-0">
+    <div class="col p-md-0">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+        </ol>
+    </div>
 </div>
-</body>
-</html>
+<!-- row -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Data Table</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered zero-configuration">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($colors as $c)
+                                <tr>
+                                    <td>{{$c->id}}</td>
+                                    <td>{{$c->name}}</td>
+                                    <td>{{$c->created_at ? $c->created_at : 'N/A'}}</td>
+                                    <td>
+                                        <div style="display: flex; gap: 1rem">
+                                            <a class="btn btn-success" href="{{route('colors.edit', ['color' => $c->id])}}">Edit</a>
+                                            <form action="{{route('colors.destroy', ['color' => $c->id])}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@push('scripts')
+    <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
+    <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+    <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+@endpush
+
+
+

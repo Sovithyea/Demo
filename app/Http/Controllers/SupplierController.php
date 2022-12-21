@@ -38,7 +38,10 @@ class SupplierController extends Controller
      */
     public function store(StoreSupplierRequest $request)
     {
-        Supplier::create($request->only('company', 'owner_name', 'telephone', 'address'));
+        // Supplier::create($request->only('company', 'owner_name', 'telephone', 'address'));
+        // dd($request->only('company', 'owner_name', 'telephone'));
+        // dd($request->validated());
+        Supplier::create($request->validated);
         return to_route('suppliers.index')->with('message', 'Successfully create supplier.');
     }
 

@@ -14,7 +14,7 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $colors = Color::paginate(10);
+        $colors = Color::get();
         return view('color.index', compact('colors'));
     }
 
