@@ -10,7 +10,12 @@
     </div>
 </div>
 <!-- row -->
+<div class="text-center">
 
+    <h3>{{$category->name}}</h3>
+    <h3>{{$category->created_at}}</h3>
+
+</div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -31,7 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($posts as $c)
+                                @foreach ($category->posts as $c)
                                 <tr>
                                     <td>{{$c->id}}</td>
                                     <td>{{$c->title}}</td>

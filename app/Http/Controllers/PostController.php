@@ -16,7 +16,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+
+        return view('post.Index', compact('posts'));
+
     }
 
     /**
@@ -37,7 +40,15 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        dd($request->all());
+        $post = new Post();
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->category_id = $request->category_id;
+        if($request->image) {
+            $post->image = $request->image->store('posts');
+        }
+        $post->save();
+        return to_route('posts.index');
     }
 
     /**
@@ -48,7 +59,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
     }
 
     /**

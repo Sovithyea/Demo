@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <label>Select Category (select one):</label>
                                 <select name="category_id" class="form-control" id="sel1">
-                                        <option>Choose</option>
+                                        <option value="">Choose</option>
                                     @foreach ($categories as $c)
                                         <option value="{{$c->id}}">{{$c->name}}</option>
                                     @endforeach
@@ -42,11 +42,11 @@
                                     {{-- <div class="card-body"> --}}
                                         {{-- <h4 class="card-title">Bootstrap Input File</h4> --}}
                                         <div class="basic-form">
-                                            <form>
+                                            {{-- <form> --}}
                                                 <div class="form-group">
                                                     <input type="file" name="image" class="form-control-file">
                                                 </div>
-                                            </form>
+                                            {{-- </form> --}}
                                         </div>
                                     {{-- </div> --}}
                                 {{-- </div> --}}
@@ -56,12 +56,12 @@
                                     {{-- <div class="card-body"> --}}
                                         {{-- <h4 class="card-title">Textarea</h4> --}}
                                         <div class="basic-form">
-                                            <form>
+                                            {{-- <form> --}}
                                                 <div class="form-group">
                                                     <label>Comment:</label>
                                                     <textarea class="form-control h-150px" rows="6" name="description" id="comment"></textarea>
                                                 </div>
-                                            </form>
+                                            {{-- </form> --}}
                                         </div>
                                     {{-- </div> --}}
                                 {{-- </div> --}}

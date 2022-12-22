@@ -44,9 +44,7 @@ class BrandController extends Controller
         $image = null;
 
         if($request->image) {
-
             $image = $request->image->store('images');
-
         }
 
         $brand = new Brand();

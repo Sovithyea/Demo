@@ -24,6 +24,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
+                                    <th>Post</th>
                                     <th>Created</th>
                                     <th>Actions</th>
                                 </tr>
@@ -33,10 +34,16 @@
                                 <tr>
                                     <td>{{$c->id}}</td>
                                     <td>{{$c->name}}</td>
+                                    <td>
+                                        @foreach ($c->posts as $posts)
+                                            {{$posts->title}} |
+                                        @endforeach
+                                    </td>
                                     <td>{{$c->created_at ? $c->created_at : 'N/A'}}</td>
                                     <td>
                                         <div style="display: flex; gap: 1rem">
                                             <a class="btn btn-success" href="{{route('categories.edit', ['category' => $c->id])}}">Edit</a>
+                                            <a class="btn btn-success" href="{{route('categories.show', ['category' => $c->id])}}">Show</a>
                                             <form action="{{route('categories.destroy', ['category' => $c->id])}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
